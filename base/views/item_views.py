@@ -1,11 +1,13 @@
 from django.views.generic import ListView, DetailView
 from base.models import Item, Category, Tag
+from django.views.generic.edit import CreateView
 
 
 class IndexListView(ListView):
     model = Item
     template_name = 'pages/index.html'
     queryset = Item.objects.filter(is_published=True)
+    paginate_by = 10 #１ページに表示するアイテムの数
 
 
 class ItemDetailView(DetailView):
@@ -42,3 +44,8 @@ class TagListView(ListView):
         context = super().get_context_data(**kwargs)
         context["title"] = f"Tag #{self.tag.name}"
         return context
+
+class ItemCreateView(CreateView): #新規作成
+    model = Item
+    template_name = 'snippets/item_form.html'
+    fields = '__all__'

@@ -1,6 +1,7 @@
 from django.db import models
 import os
 from django.utils.crypto import get_random_string
+from django.urls import reverse
 
 
 
@@ -14,7 +15,7 @@ def upload_image_to(instance, filename):
 
 
 class Tag(models.Model):
-    slug = models.CharField(max_length=32, primary_key=True)
+    slug = models.CharField(max_length=32, primary_key=True) #要らない
     name = models.CharField(max_length=32)
 
     def __str__(self):
@@ -48,3 +49,7 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+    
+    # 新規作成・編集完了時のリダイレクト先
+    def get_absolute_url(self):
+        return reverse('list')
