@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView
 from base.models import Item, Category, Tag
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 
 class IndexListView(ListView):
@@ -49,3 +49,8 @@ class ItemCreateView(CreateView): #新規作成
     model = Item
     template_name = 'snippets/item_form.html'
     fields = '__all__'
+    
+class ItemUpdateView(UpdateView):
+    model = Item
+    fields = '__all__'
+    template_name_suffix = '_update_form'

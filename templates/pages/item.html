@@ -27,7 +27,7 @@
           {% csrf_token %}
           <input type="hidden" name="item_pk" value="{{object.pk}}">
           <p>
-            <input type="number" class="form-control d-inline w-25" name="quantity" max="{{object.stock}}"> 点
+            <!--<button class="btn btn-primary" onclick="location.href='{% url 'edit' pk=product.pk %}'">編集</button>-->
           </p>
           <p>
             {% if object.stock == 0 %}
