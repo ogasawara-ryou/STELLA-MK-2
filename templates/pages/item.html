@@ -27,7 +27,7 @@
           {% csrf_token %}
           <input type="hidden" name="item_pk" value="{{object.pk}}">
           <p>
-            <!--<button class="btn btn-primary" onclick="location.href='{% url 'edit' pk=product.pk %}'">編集</button>-->
+            <button class="btn btn-primary" onclick="location.href='{% url 'edit' pk=item.pk %}'">編集</button>
           </p>
           <p>
             {% if object.stock == 0 %}
