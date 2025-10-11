@@ -1,0 +1,7 @@
+django==
+Pillow==
+mysqlclient==
+
+# pip install -r requirements.txt この中のを全部指定して入れられる
+# pip list
+# pip freeze  > requirements.txt

@@ -1,0 +1,10 @@
+<a href="{% url 'item_detail' item.pk %}"> <!--エラー箇所-->
+    <div class="border">
+        <img src="/{{item.image}}" width="100%" class=" bg-white">
+        <div class="bg-light text-center text-secondary overflow-hidden">
+            <div class="my-2 py-2">
+                <h2 class="lead">{{item.name}} - 作成:{{item.price}}</h2>
+            </div>
+        </div>
+    </div>
+</a>
