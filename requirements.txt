@@ -1,6 +1,6 @@
-django==
-Pillow==
-mysqlclient==
+django==5.2.7
+Pillow==11.3.0
+
 
 # pip install -r requirements.txt この中のを全部指定して入れられる
 # pip list
