@@ -2,10 +2,10 @@
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
     <a class="py-2 text-white" href="/">{{ TITLE }}</a>
     <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'list' %}">投稿一覧</a>
-    <a class="py-2 d-none d-md-inline-block text-white" href="/orders/">Orders</a>
-    <a class="py-2 d-none d-md-inline-block text-white" href="/profile/">Profile</a>
+    <!--<a class="py-2 d-none d-md-inline-block text-white" href="/orders/">Orders</a>
+    <a class="py-2 d-none d-md-inline-block text-white" href="/profile/">Profile</a>-->
     <a class="py-2 d-none d-md-inline-block text-white" href="/account/">アカウント</a>
-    <a class="py-2 d-none d-md-inline-block text-white" href="/cart/">Cartお気に入り
+    <a class="py-2 d-none d-md-inline-block text-white" href="/cart/">お気に入り
       {% if request.session.cart and request.session.cart.items|length != 0 %}
       <span class="badge badge-danger">{{request.session.cart.items|length}}</span>
       {% endif %}

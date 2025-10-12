@@ -29,13 +29,20 @@
           <p>
             <button class="btn btn-primary" onclick="location.href='{% url 'edit' pk=item.pk %}'">編集</button>
           </p>
-          <p>
+          <!--<p>
             {% if object.stock == 0 %}
             <button type="submit" class="btn btn-warning" disabled>売り切れ</button>
             {% else %}
             <button type="submit" class="btn btn-success">Add to cart</button>
             {% endif %}
-          </p>
+          </p>-->
+          <p>
+          <form action="{% url 'bookmark' item.pk %}" method="post">
+              <button type="submit" name="button">お気に入り追加</button>
+              {% csrf_token %}
+          </form>
+          <p>
+
         </form>
       </div>
     </div>

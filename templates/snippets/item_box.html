@@ -1,4 +1,4 @@
-{#<a href="{% url 'item_detail' item.pk %}"> <!--エラー箇所 item読み込めてない？-->#}
+<a href="{% url 'item_detail' item.pk %}"> <!--エラー箇所 item読み込めてない？{##}-->
     <div class="border">
         <img src="/{{item.image}}" width="100%" class=" bg-white">
         <div class="bg-light text-center text-secondary overflow-hidden">
@@ -7,4 +7,4 @@
             </div>
         </div>
     </div>
-{#</a>#}
+</a>

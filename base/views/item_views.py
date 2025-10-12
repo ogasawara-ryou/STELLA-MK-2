@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView
 from base.models import Item, Category, Tag
 from django.views.generic.edit import CreateView, UpdateView
+from django.shortcuts import redirect, get_object_or_404
 
 
 class IndexListView(ListView):
@@ -54,3 +55,11 @@ class ItemUpdateView(UpdateView):
     model = Item
     fields = '__all__'
     template_name_suffix = '_update_form'
+    
+
+#class BookmarkView(request. pk):
+class BookmarkView(ListView):
+    def post(self, request, pk):
+        item = get_object_or_404(Item, pk=pk)
+        request.user.bookmark.add(item)
+        return redirect('list')

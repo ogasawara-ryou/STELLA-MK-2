@@ -40,6 +40,7 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['email', ]
+    #bookmark = models.ManyToManyField(Item, verbose_name='お気に入り', blank=True)
 
     def __str__(self):
         return self.email

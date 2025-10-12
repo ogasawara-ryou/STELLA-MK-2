@@ -47,6 +47,7 @@ class Item(models.Model):
     image = models.ImageField(
         default="", blank=True, upload_to=upload_image_to)
 
+
     def __str__(self):
         return self.name
     
