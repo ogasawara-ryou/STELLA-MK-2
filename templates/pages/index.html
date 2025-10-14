@@ -2,6 +2,32 @@
 
 {% block main %}
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-bottom: 1rem;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'list' %}">STELLA</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if request.user.is_authenticated %}
+                    <span class="navbar-text">
+                        ようこそ {{ user.get_username }} さん
+                    </span>
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <input class="nav-link" type="submit" value="ログアウト">
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">ログイン</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
 {% include 'snippets/headline.html' %}
 
 <a href="{% url 'new' %}">投稿を新規作成</a>

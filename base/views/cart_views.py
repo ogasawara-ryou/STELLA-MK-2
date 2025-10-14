@@ -48,7 +48,7 @@ class AddCartView(LoginRequiredMixin, View):
 
     def post(self, request):
         item_pk = request.POST.get('item_pk')
-        quantity = int(request.POST.get('quantity'))
+        quantity = int(request.POST.get('quantity') or 1)
         cart = request.session.get('cart', None)
         if cart is None or len(cart) == 0:
             items = OrderedDict()

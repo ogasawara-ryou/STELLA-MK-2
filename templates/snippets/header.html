@@ -11,10 +11,10 @@
       {% endif %}
     </a>
     {% if user.is_authenticated %}
-    <a class="py-2 d-none d-md-inline-block text-white" href="/logout/">ログアウト</a>
+    <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'logout' %}">ログアウト</a>
     {% else %}
-    <a class="py-2 d-none d-md-inline-block text-white" href="/login/">ログイン</a>
-    <a class="py-2 d-none d-md-inline-block text-white" href="/signup/">SignUpアカウント作成</a>
+    <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'login' %}">ログイン</a>
+    <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'signup' %}">アカウント作成</a>
     {% endif %}
   </nav>
 </div>

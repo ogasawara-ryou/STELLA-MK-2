@@ -1,6 +1,7 @@
 from django.views.generic import CreateView, UpdateView
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from base.models import Profile
@@ -52,3 +53,6 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         # URL Pathからではなく、現在のユーザーから直接pkを取得
         self.kwargs['pk'] = self.request.user
         return super().get_object()
+    
+class LogoutView(LoginRequiredMixin, LogoutView):
+    template_name = 'logout.html'

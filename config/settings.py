@@ -162,4 +162,4 @@ MESSAGE_TAGS = {
 
 
 # カスタムコンテキスト
-TITLE = 'VegiKet'
+TITLE = 'STELLA'
