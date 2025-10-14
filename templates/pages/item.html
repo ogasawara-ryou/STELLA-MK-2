@@ -17,10 +17,10 @@
           {% for tag in object.tags.all %}
           <a href="/tags/{{tag.slug}}/" class="badge badge-pill badge-light">#{{tag}}</a>
           {% endfor %}
-        </p>
+        <!--</p>
         <p class="lead">残り{{object.stock}}個
         </p>
-        <p class="lead">¥{{object.price}}（税別）</p>
+        <p class="lead">¥{{object.price}}（税別）</p>-->
         <p class="lead">{{object.description}}</p>
 
         <form action="/cart/add/" method="POST" class="">
@@ -49,7 +49,7 @@
   </div>
   <h2>おすすめ</h2>
   <div class="row mb-5">
-    {% for object in ADDTIONAL_ITEMS %}
+    {% for item in ADDTIONAL_ITEMS %}
     <div class="col-12 col-lg-3 my-3">
       {% include 'snippets/item_add_box.html' %}
     </div>

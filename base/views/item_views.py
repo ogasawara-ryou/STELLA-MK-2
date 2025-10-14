@@ -54,7 +54,8 @@ class ItemCreateView(CreateView): #新規作成
 class ItemUpdateView(UpdateView):
     model = Item
     fields = '__all__'
-    template_name_suffix = '_update_form'
+    #template_name_suffix = '_update_form'
+    template_name = 'pages/update.html'
     
 
 #class BookmarkView(request. pk):
