@@ -2,9 +2,10 @@ from django.views.generic import ListView, DetailView
 from base.models import Item, Category, Tag
 from django.views.generic.edit import CreateView, UpdateView
 from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class IndexListView(ListView):
+class IndexListView(LoginRequiredMixin, ListView):
     model = Item
     template_name = 'pages/index.html'
     queryset = Item.objects.filter(is_published=True)
