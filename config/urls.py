@@ -44,7 +44,7 @@ urlpatterns = [
 
     # Items
     #path('item/{{object.pk}}/', views.ItemDetailView.as_view()),
-    path('items/<str:pk>/', views.ItemDetailView.as_view(), name="item_detail"),
+    path('items/<str:pk>', views.ItemDetailView.as_view(), name="item_detail"),
     path('categories/<str:pk>/', views.CategoryListView.as_view()),
     path('tags/<str:pk>/', views.TagListView.as_view()),
     path('new/', views.ItemCreateView.as_view(), name="new"),
