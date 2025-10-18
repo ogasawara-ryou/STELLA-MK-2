@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 
-class CartListView(LoginRequiredMixin, ListView):
+class CartListView( ListView): #LoginRequiredMixin,
     model = Item
     template_name = 'pages/cart.html'
 
