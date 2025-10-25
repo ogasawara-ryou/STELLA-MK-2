@@ -5,6 +5,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+
 class IndexListView(LoginRequiredMixin, ListView):
     model = Item
     template_name = 'pages/index.html'
@@ -55,6 +56,7 @@ class ItemCreateView(CreateView): #新規作成
 class ItemUpdateView(UpdateView):
     model = Item
     fields = '__all__'
+    instance=Item  # ← ここで元の内容を初期値としてセット
     #template_name_suffix = '_update_form'
     template_name = 'pages/update.html'
     
@@ -62,6 +64,10 @@ class ItemUpdateView(UpdateView):
 #class BookmarkView(request. pk):
 class BookmarkView(ListView):
     def post(self, request, pk):
+        print("ブックマーク"+pk)
         item = get_object_or_404(Item, pk=pk)
         request.user.bookmark.add(item)
         return redirect('list')
+
+
+

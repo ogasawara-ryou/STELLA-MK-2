@@ -2,10 +2,10 @@
   <img src="/{{object.image}}" width="100%" class="bg-white" />
   <div class="bg-light text-center text-secondary overflow-hidden">
     <div class="my-2 py-2">
-      <h2 class="lead">{{object.name}} - ¥{{object.price}}</h2>
+      <h2 class="lead">{{object.name}} - 作成:{{user.username}}</h2>
       <form action="/cart/add/" method="POST" class="p-2">
         {% csrf_token %}
-        <input type="hidden" name="item_pk" value="{{object.pk}}" />
+        <input type="hidden" name="object_pk" value="{{object.pk}}" />
         <div class="form-row align-items-center">
           <div class="col-md-7">
             <input
@@ -13,11 +13,11 @@
               class="form-control form-control-sm"
               name="quantity"
               value="1"
-              max="{{object.stock}}"
+              max="{{item.stock}}"
             />
           </div>
           <div class="col-md-5">
-            {% if object.stock == 0 %}
+            {% if item.stock == 0 %}
             <button
               type="submit"
               class="btn btn-sm btn-outline-warning"

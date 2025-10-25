@@ -55,4 +55,4 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         return super().get_object()
     
 class LogoutView(LoginRequiredMixin, LogoutView):
-    template_name = 'logout.html'
+    template_name = 'index.html'

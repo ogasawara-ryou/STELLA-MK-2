@@ -5,23 +5,23 @@
   <div class="row my-5">
     <div class="col-12 col-lg-6">
       <div class="bg-white border overflow-hidden">
-        <img src="/{{ object.image }}" width="100%">
+        <img src="/{{ item.image }}" width="100%">
       </div>
     </div>
     <div class="col-12 col-lg-6">
       <div class="border p-3 text-left text-dark overflow-hidden">
-        <h2 class="display-5">{{object.name}}</h2>
+        <h2 class="display-5">{{item.name}}</h2>
         <p class="lead">
-          <a href="/categories/{{object.category.slug}}/"
-            class="badge badge-pill badge-warning">{{object.category.name}}</a>
-          {% for tag in object.tags.all %}
+          <a href="/categories/{{item.category.slug}}/"
+            class="badge badge-pill badge-warning">{{item.category.name}}</a>
+          {% for tag in item.tags.all %}
           <a href="/tags/{{tag.slug}}/" class="badge badge-pill badge-light">#{{tag}}</a>
           {% endfor %}
         <!--</p>
-        <p class="lead">残り{{object.stock}}個
+        <p class="lead">残り{{item.stock}}個
         </p>
-        <p class="lead">¥{{object.price}}（税別）</p>-->
-        <p class="lead">{{object.description}}</p>
+        <p class="lead">¥{{item.price}}（税別）</p>-->
+        <p class="lead">{{item.description}}</p>
 
         <form action="{% url 'edit' pk=item.pk %}" method="POST" class="">
           {% csrf_token %}

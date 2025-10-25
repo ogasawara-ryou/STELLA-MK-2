@@ -6,7 +6,7 @@
   <div class="row my-5">
     <div class="col-12">
       <h2>お気に入り</h2>
-      {% if object_list|length != 0 %}
+      {% if item_list|length != 0 %}
       <table class="table mb-5 text-right">
         <thead>
           <tr>
@@ -19,16 +19,16 @@
           </tr>
         </thead>
         <tbody>
-          {% for object in object_list %}
+          {% for item in item_list %}
           <tr>
             <td>No.{{forloop.counter}}</td>
-            <td>{{object.name}}</td>
-            <td>{{object.price}}</td>
-            <td>{{object.quantity}}</td>
-            <td>{{object.subtotal}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.subtotal}}</td>
             <td>
               <a
-                href="/cart/remove/{{object.pk}}/"
+                href="/cart/remove/{{item.pk}}/"
                 class="my-auto btn btn-danger btn-sm"
                 >削除</a
               >
