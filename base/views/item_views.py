@@ -3,6 +3,7 @@ from base.models import Item, Category, Tag
 from django.views.generic.edit import CreateView, UpdateView
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 
 
 
@@ -11,6 +12,11 @@ class IndexListView(LoginRequiredMixin, ListView):
     template_name = 'pages/index.html'
     queryset = Item.objects.filter(is_published=True)
     paginate_by = 10 #１ページに表示するアイテムの数
+    
+    def item_search(request):
+        query = request.GET.get('q')
+        results = Item.objects.filter(name__icontains=query) if query else Item.objects.all()
+        return render(request, 'search.html', {'items': results})
 
 
 class ItemDetailView(DetailView):
@@ -47,6 +53,8 @@ class TagListView(ListView):
         context = super().get_context_data(**kwargs)
         context["title"] = f"Tag #{self.tag.name}"
         return context
+    
+    
 
 class ItemCreateView(CreateView): #新規作成
     model = Item
@@ -68,6 +76,7 @@ class BookmarkView(ListView):
         item = get_object_or_404(Item, pk=pk)
         request.user.bookmark.add(item)
         return redirect('list')
+
 
 
 

@@ -1,0 +1,8 @@
+<h1>検索結果</h1>
+<ul>
+    {% for object in items %}
+        <li>{{ object.name }} - 作成:{{ user.username }}</li>
+    {% empty %}
+        <li>該当の投稿が見つかりませんでした。</li>
+    {% endfor %}
+</ul>

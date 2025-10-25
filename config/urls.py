@@ -51,6 +51,7 @@ urlpatterns = [
     path('edit/<str:pk>/', views.ItemUpdateView.as_view(), name="edit"),
 
     path('', views.IndexListView.as_view(), name="list"),
-    path('bookmark/<str:pk>/', views.BookmarkView.as_view(), name='bookmark'),   
+    path('bookmark/<str:pk>/', views.BookmarkView.as_view(), name='bookmark'),  
+    path('search/', views.ItemSearchView.as_view(), name='item_search'), # 他のパス 
 
 ]
