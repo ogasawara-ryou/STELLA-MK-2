@@ -1,18 +1,7 @@
 from django.db import models
-import os
-from django.utils.crypto import get_random_string
 from django.urls import reverse
-
-
-
-
-def create_id():
-    return get_random_string(22)
-
-
-def upload_image_to(instance, filename):
-    item_id = str(instance.id)
-    return os.path.join('static', 'items', item_id, filename)
+from .account_models import User
+from .utils import create_id, upload_image_to
 
 
 class Tag(models.Model):
@@ -34,14 +23,13 @@ class Category(models.Model):
 class Item(models.Model):
     id = models.CharField(default=create_id, primary_key=True,
                           max_length=22, editable=False)
-    name = models.CharField(default='', max_length=50)
-    #price = models.PositiveIntegerField(default=0)
-    #stock = models.PositiveIntegerField(default=0)
-    description = models.TextField(default='', blank=False) #true→false
-    #sold_count = models.PositiveIntegerField(default=0)
-    is_published = models.BooleanField(default=False) 
+    name = models.CharField(default='題名', max_length=50)
+    description = models.TextField(default='説明文', blank=False) #true→false
+    is_published = models.BooleanField(default=True) 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    latest_author = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True)
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True)
     tags = models.ManyToManyField(Tag)
@@ -55,6 +43,21 @@ class Item(models.Model):
     # 新規作成・編集完了時のリダイレクト先
     def get_absolute_url(self):
         return reverse('list')
+    
+class Bookmark(models.Model):
+    user=models.ForeignKey(User,on_delete=models.SET_NULL, null=True, blank=True)
+    item=models.ForeignKey(Item,on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "ブックマーク"
+        verbose_name_plural = "ブックマーク一覧"
+
+    def __str__(self):
+        return f"{self.user.username} / {self.item.name}" 
+        
+
+
+
     
 
 

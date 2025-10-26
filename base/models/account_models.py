@@ -2,7 +2,8 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
-from base.models import create_id, Item
+from .utils import create_id, upload_image_to
+#from base.models import Item
 
 
 class UserManager(BaseUserManager):
@@ -40,7 +41,6 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'username'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['email', ]
-    bookmark = models.ManyToManyField(Item, verbose_name='お気に入り', blank=True)
 
     def __str__(self):
         return self.email

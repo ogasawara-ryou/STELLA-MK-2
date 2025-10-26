@@ -48,10 +48,9 @@ urlpatterns = [
     path('categories/<str:pk>/', views.CategoryListView.as_view()),
     path('tags/<str:pk>/', views.TagListView.as_view()),
     path('new/', views.ItemCreateView.as_view(), name="new"),
-    path('edit/<str:pk>/', views.ItemUpdateView.as_view(), name="edit"),
+    path('edit/<str:pk>/', views.ItemUpdateView.as_view(), name="edit"), #idが正しく渡っていないテンプレと比べてみて
 
     path('', views.IndexListView.as_view(), name="list"),
     path('bookmark/<str:pk>/', views.BookmarkView.as_view(), name='bookmark'),  
-    path('search/', views.ItemSearchView.as_view(), name='item_search'), # 他のパス 
 
 ]

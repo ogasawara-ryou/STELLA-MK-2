@@ -10,14 +10,24 @@ from django.shortcuts import render
 class IndexListView(LoginRequiredMixin, ListView):
     model = Item
     template_name = 'pages/index.html'
-    queryset = Item.objects.filter(is_published=True)
     paginate_by = 10 #１ページに表示するアイテムの数
     
+    def get_queryset(self):
+        queryset=super().get_queryset()
+        queryset = queryset.filter(is_published=True)
+        name = self.request.GET.get('name')
+        if name:
+            queryset=queryset.filter(name__icontains=name)
+        return queryset
+        
+        
+
+    """
     def item_search(request):
         query = request.GET.get('q')
         results = Item.objects.filter(name__icontains=query) if query else Item.objects.all()
         return render(request, 'search.html', {'items': results})
-
+    """
 
 class ItemDetailView(DetailView):
     model = Item
@@ -59,11 +69,12 @@ class TagListView(ListView):
 class ItemCreateView(CreateView): #新規作成
     model = Item
     template_name = 'snippets/item_form.html'
-    fields = '__all__'
+    fields = ("name","description","category","tags","image")
+    
     
 class ItemUpdateView(UpdateView):
     model = Item
-    fields = '__all__'
+    fields = ("name","description","category","tags","image")
     instance=Item  # ← ここで元の内容を初期値としてセット
     #template_name_suffix = '_update_form'
     template_name = 'pages/update.html'
