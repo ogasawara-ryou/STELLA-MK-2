@@ -35,6 +35,7 @@ class User(AbstractBaseUser):
     username = models.CharField(
         max_length=50, unique=True, blank=True, default='匿名')
     email = models.EmailField(max_length=255, unique=True)
+    user_bookmark = models.ManyToManyField('Bookmark', related_name='bookmarked_users', blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     objects = UserManager()

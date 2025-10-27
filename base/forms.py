@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from .models import Item
 
 
 class UserCreationForm(forms.ModelForm):
@@ -19,3 +20,8 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+class ItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ['name', 'description', 'category', 'tags', 'image']

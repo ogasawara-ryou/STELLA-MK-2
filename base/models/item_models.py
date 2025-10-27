@@ -45,7 +45,7 @@ class Item(models.Model):
         return reverse('list')
     
 class Bookmark(models.Model):
-    user=models.ForeignKey(User,on_delete=models.SET_NULL, null=True, blank=True)
+    user=models.ForeignKey(User,on_delete=models.SET_NULL, related_name='bookmarked_users', null=True, blank=True)
     item=models.ForeignKey(Item,on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
