@@ -72,6 +72,12 @@ class ItemCreateView(CreateView): #新規作成
     template_name = 'snippets/item_form.html'
     fields = ("name","description","category","tags","image")
     
+    def form_valid(self, form):
+        item = form.save(commit=False)  # まずは保存せずに取得
+        item.latest_author = self.request.user  # 現在のユーザーを最新の作者として設定
+        item.save()  # 保存
+        return super().form_valid(form)  # スーパークラスのメソッドを呼び出す
+    
     
 class ItemUpdateView(UpdateView):
     model = Item
@@ -80,6 +86,12 @@ class ItemUpdateView(UpdateView):
     #template_name_suffix = '_update_form'
     template_name = 'pages/update.html'
     form_class = ItemForm
+    
+    def form_valid(self, form):
+        item = form.save(commit=False)  # まずは保存せずに取得
+        item.latest_author = self.request.user  # 現在のユーザーを最新の作者として設定
+        item.save()  # 保存
+        return super().form_valid(form)  # スーパークラスのメソッドを呼び出す
     
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
