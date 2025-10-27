@@ -11,10 +11,21 @@
       {% endif %}
     </a>
     {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="py-2 d-none d-md-inline-block text-white" style="background:none; border:none;">ログアウト</button>
+    </form>
+{% else %}
+    <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'login' %}">ログイン</a>
+    <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'signup' %}">アカウント作成</a>
+{% endif %}
+    <!--
+    {% if user.is_authenticated %}
     <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'logout' %}">ログアウト</a>
     {% else %}
     <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'login' %}">ログイン</a>
     <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'signup' %}">アカウント作成</a>
     {% endif %}
+    -->
   </nav>
 </div>

@@ -6,26 +6,34 @@
   <div class="row my-5">
     <div class="col-12">
       <h2>お気に入り</h2>
+      <form action="{% url 'list' %}" method="GET" class="form-inline my-2 my-lg-0">
+    <input type="text" name="name" value={{ request.GET.name }} placeholder="商品を検索" aria-label="Search" class="form-control mr-sm-2">
+    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+      </form>
       {% if item_list|length != 0 %}
       <table class="table mb-5 text-right">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">題名</th>
-            <th scope="col">単価</th>
+            <th scope="col">最終更新者</th>
+            <!--
             <th scope="col">個数</th>
             <th scope="col">計</th>
+            -->
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          {% for item in item_list %}
+          {% for item in object_list %}
           <tr>
             <td>No.{{forloop.counter}}</td>
             <td>{{item.name}}</td>
-            <td>{{item.price}}</td>
+            <td>{{item.latest_author.username|default:"不明"}}</td>
+            <!--
             <td>{{item.quantity}}</td>
             <td>{{item.subtotal}}</td>
+            -->
             <td>
               <a
                 href="/cart/remove/{{item.pk}}/"
