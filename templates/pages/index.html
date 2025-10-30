@@ -35,7 +35,7 @@
 <a href="{% url 'new' %}">投稿を新規作成</a>
 
 <form action="{% url 'list' %}" method="GET" class="form-inline my-2 my-lg-0">
-    <input type="text" name="name" value={{ request.GET.name }} placeholder="商品を検索" aria-label="Search" class="form-control mr-sm-2">
+    <input type="text" name="name" value="{{ request.GET.name }}" placeholder="検索したい投稿の題名" aria-label="Search" class="form-control mr-sm-2">
     <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
 </form>
 
