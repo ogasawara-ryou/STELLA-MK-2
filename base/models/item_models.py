@@ -23,7 +23,7 @@ class Category(models.Model):
 class Item(models.Model):
     id = models.CharField(default=create_id, primary_key=True,
                           max_length=22, editable=False)
-    name = models.CharField(default='題名', max_length=50)
+    name = models.CharField(default='題名　(作成者名)', max_length=50)
     description = models.TextField(default='説明文', blank=False) #true→false
     is_published = models.BooleanField(default=True) 
     created_at = models.DateTimeField(auto_now_add=True)

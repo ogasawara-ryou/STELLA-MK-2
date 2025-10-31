@@ -32,7 +32,7 @@
     
 {% include 'snippets/headline.html' %}
 
-<a href="{% url 'new' %}">投稿を新規作成</a>
+<button class="btn btn-primary" onclick="location.href='{% url 'new' %}'">投稿を新規作成</button><br><br>
 
 <form action="{% url 'list' %}" method="GET" class="form-inline my-2 my-lg-0">
     <input type="text" name="name" value="{{ request.GET.name }}" placeholder="検索したい投稿の題名" aria-label="Search" class="form-control mr-sm-2">
