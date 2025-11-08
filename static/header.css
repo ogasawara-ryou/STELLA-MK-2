@@ -1,0 +1,74 @@
+/*====================
+ スマートフォン用のスタイル
+=====================*/
+@media screen and (max-width: 767px) {
+  /* PC用ナビゲーション非表示 */
+  .py-1 bg-dark {
+    display: none;
+  }
+
+  /* ハンバーガーメニュー */
+  #menu-sp {
+    display: block; /* メニューを表示 */
+    background-color: transparent;
+    float: right;
+    padding: 0;
+    border: none;
+  }
+
+  /* スマホ用ナビゲーションの表示切替*/
+  /* 初期状態、レイアウトと非表示設定 */
+  #nav-sp {
+    background-color: #2710d5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+    z-index: 100;
+  }
+
+  /* ×ボタン */
+  #close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+  }
+
+  #nav-sp nav ul {
+    padding-left: 0;
+  }
+
+  #nav-sp nav li {
+    list-style: none;
+  }
+
+  /* ナビゲーションメニュー用ロゴ */
+  #logo-sp {
+    margin: 80px 0 30px 20px;
+  }
+
+  /* ナビゲーションのリンクの装飾設定 */
+  #nav-sp nav a {
+    display: block;
+    color: #ffffff;
+  }
+ 
+  #nav-sp nav a:hover {
+     text-decoration: underline;
+   }
+ 
+   #nav-sp .menu {
+     text-decoration: none;
+     margin: 0 20px 0 20px;
+     height: 44px;
+     font-size: 16px;
+     background-image: url("images/arrow.png");
+     background-repeat: no-repeat;
+     background-position: right top;
+   }
+
+}

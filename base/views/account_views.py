@@ -56,3 +56,5 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     
 class LogoutView(LoginRequiredMixin, LogoutView):
     template_name = 'index.html'
+    
+
