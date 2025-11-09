@@ -92,14 +92,14 @@ class ItemUpdateView(UpdateView):
         item.latest_author = self.request.user  # 現在のユーザーを最新の作者として設定
         item.save()  # 保存
         return super().form_valid(form)  # スーパークラスのメソッドを呼び出す
-    
+    '''
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
         # デバッグ用に取得したアイテム名を出力
         #print(f"取得したアイテムの名前: {obj.name}")
         print(f"取得したアイテムのデータ: {obj.__dict__}")
         return obj
-    
+    '''
 
 #class BookmarkView(request. pk):
 class BookmarkView(ListView):

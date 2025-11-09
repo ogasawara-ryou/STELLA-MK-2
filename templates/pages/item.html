@@ -23,12 +23,10 @@
         <p class="lead">¥{{item.price}}（税別）</p>-->
         <p class="lead">{{item.description}}</p>
 
-        <form action="{% url 'edit' pk=item.pk %}" method="POST" class="">
-          {% csrf_token %}
-          <p>
-            <button class="btn btn-primary" type="submit">編集</button>
-          </p>
-        </form>
+        <button class="btn btn-primary" onclick="location.href='{% url 'edit' pk=item.pk %}'">編集</button>
+        
+
+
         
         <form action="{% url 'bookmark' item.pk %}" method="post">
           <button type="submit" name="button">お気に入り追加</button>
