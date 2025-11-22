@@ -50,6 +50,7 @@
     right: 20px;
     background-color: transparent;
     border: none;
+    display: none;
   }
 
   #nav-sp nav ul {

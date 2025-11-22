@@ -31,40 +31,37 @@
   </button>
 
       <!-- スマホ用ナビゲーション -->
-<div id="nav-sp" style="display: none;">
-  <nav class="container d-flex flex-column flex-md-row justify-content-between">
-        <nav>
-          <ul>
+<nav id="nav-sp" style="display: none;">
+    <ul>
+        <li>
+            <a class="py-2" href="{% url 'list' %}">投稿一覧</a>
+        </li>
+        <li>
+            <a class="py-2" href="/account/">アカウント</a>
+        </li>
+        <li>
+            <a class="py-2" href="/cart/">お気に入り</a>
+        </li>
+        {% if user.is_authenticated %}
             <li>
-            <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'list' %}">投稿一覧</a>
+                <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="py-2" style="background:none; border:none;">ログアウト</button>
+                </form>
+            </li>
+        {% else %}
+            <li>
+                <a class="py-2" href="{% url 'login' %}">ログイン</a>
             </li>
             <li>
-            <a class="py-2 d-none d-md-inline-block text-white" href="/account/">アカウント</a>
+                <a class="py-2" href="{% url 'signup' %}">アカウント作成</a>
             </li>
-            <li>
-            <a class="py-2 d-none d-md-inline-block text-white" href="/cart/">お気に入り
-              {% if request.session.cart and request.session.cart.items|length != 0 %}
-            <span class="badge badge-danger">{{request.session.cart.items|length}}</span>
-              {% endif %}
-              </a>
-              {% if user.is_authenticated %}
-            <form method="POST" action="{% url 'logout' %}" style="display:inline;">
-              {% csrf_token %}
-            <button type="submit" class="py-2 d-none d-md-inline-block text-white" style="background:none; border:none;">ログアウト</button>
-            </form>
-              {% else %}
-            </li>
-            <li>
-            <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'login' %}">ログイン</a>
-            </li>
-            <li>
-            <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'signup' %}">アカウント作成</a>
-              {% endif %}
-            </li>
-          </ul>
-        </nav>
-  </nav>
+        {% endif %}
+    </ul>
+
     <button id="close" onclick="document.getElementById('nav-sp').style.display = 'none'">
       <img src="static/images/button-close.png" alt="ナビゲーションを閉じる">
     </button>
-</div>
+
+</nav>
+
