@@ -34,7 +34,13 @@ class Item(models.Model):
         Category, on_delete=models.SET_NULL, null=True, blank=True)
     tags = models.ManyToManyField(Tag)
     image = models.ImageField(
-        default="", blank=True, upload_to=upload_image_to)
+        default='images/noImage.png',  # 静的ファイルの相対パス
+        upload_to='images/',  # アップロード先をimagesフォルダに指定
+        blank=True,
+    )
+    #image = models.ImageField(default="noImage.png", upload_to=upload_image_to)
+    #image = models.ImageField(
+    #    default="", blank=True, upload_to=upload_image_to)
 
 
     def __str__(self):

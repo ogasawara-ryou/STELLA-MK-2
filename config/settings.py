@@ -140,9 +140,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # 追記
+    BASE_DIR / 'static',  # 追記 # 静的ファイルが格納されるディレクトリ
 ]
 
+# 画像関連の設定
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'   # アップロードファイルを格納するディレクトリ
 
 # 消費税率
 TAX_RATE = 0.1

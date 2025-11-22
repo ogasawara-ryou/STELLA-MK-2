@@ -12,6 +12,9 @@ class IndexListView(LoginRequiredMixin, ListView):
     model = Item
     template_name = 'pages/index.html'
     paginate_by = 10 #１ページに表示するアイテムの数
+    ordering = ['-created_at'] 
+    # ordering = ['-created_at']  # 降順の例
+    # ordering = ['created_at']  # 昇順の例
     
     def get_queryset(self):
         queryset=super().get_queryset()
@@ -55,6 +58,7 @@ class TagListView(ListView):
     model = Item
     template_name = 'pages/list.html'
     paginate_by = 2
+    
 
     def get_queryset(self):
         self.tag = Tag.objects.get(slug=self.kwargs['pk'])
