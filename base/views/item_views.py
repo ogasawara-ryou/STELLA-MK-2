@@ -90,12 +90,14 @@ class ItemUpdateView(UpdateView):
     #template_name_suffix = '_update_form'
     template_name = 'pages/update.html'
     form_class = ItemForm
+    #fields ="__all__"
     
     def form_valid(self, form):
         item = form.save(commit=False)  # まずは保存せずに取得
         item.latest_author = self.request.user  # 現在のユーザーを最新の作者として設定
         item.save()  # 保存
         return super().form_valid(form)  # スーパークラスのメソッドを呼び出す
+    
     '''
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
@@ -106,17 +108,7 @@ class ItemUpdateView(UpdateView):
     '''
 
 #class BookmarkView(request. pk):
-class BookmarkView(ListView):
-    def post(self, request, pk):
-        print("ブックマーク"+pk)
-        item = get_object_or_404(Item, pk=pk)
-        
-        # Bookmarkインスタンスを作成し、それをuser_bookmarkに追加
-        bookmark = Bookmark(user=request.user, item=item)
-        bookmark.save()  # データベースに保存します
-        
-        request.user.user_bookmark.add(bookmark)
-        return redirect('list')
+
 
 
 
