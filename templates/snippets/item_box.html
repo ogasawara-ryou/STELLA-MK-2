@@ -1,7 +1,7 @@
 <a href="{% url 'item_detail' item.pk %}"> 
     <div class="border">
         {% load static %}
-        <img src="{% if item.image %}{{item.image.url}}{% else %}{% static 'images/noImage.png' %}{% endif %}" width="100px" alt="商品画像" />
+        <img src="{% if item.image %}{{item.image.url}}{% else %}{% static 'images/noImage.png' %}{% endif %}" width="250px" alt="商品画像" />
         <!--<img src="/{{item.image}}" width="100%" class=" bg-white"> ここはitemをobjectにすると一覧に画像が出ない-->
         <div class="bg-light text-center text-secondary overflow-hidden">
             <div class="my-2 py-2">

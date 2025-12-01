@@ -7,9 +7,11 @@ from django.shortcuts import get_object_or_404, redirect
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
-class BookmarkListView( ListView): #LoginRequiredMixin,
+class BookmarkListView(LoginRequiredMixin,ListView): #
     model = Item
     template_name = 'pages/bookmark.html'
 
@@ -42,7 +44,8 @@ class BookmarkAddView(View): #別にデリートのビューも必要
         
         #request.user.user_bookmark.add(bookmark)
         return redirect('list')
-    
+
+"""    
 class BookmarkDeleteView(View):
     def post(self, request, pk):
         # 指定されたpkでブックマークを取得
@@ -53,3 +56,9 @@ class BookmarkDeleteView(View):
 
         # リダイレクト先を指定
         return redirect('list')
+    
+"""
+    
+class BookmarkDeleteView(DeleteView):
+    model = Item
+    success_url = reverse_lazy('list')
