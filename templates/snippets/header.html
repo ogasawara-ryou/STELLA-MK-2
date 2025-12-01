@@ -7,9 +7,9 @@
     <a class="py-2 text-white" href="/">{{ TITLE }}</a>
     <a class="py-2 d-none d-md-inline-block text-white" href="{% url 'list' %}">投稿一覧</a>
     <a class="py-2 d-none d-md-inline-block text-white" href="/account/">アカウント</a>
-    <a class="py-2 d-none d-md-inline-block text-white" href="/cart/">お気に入り
-      {% if request.session.cart and request.session.cart.items|length != 0 %}
-      <span class="badge badge-danger">{{request.session.cart.items|length}}</span>
+    <a class="py-2 d-none d-md-inline-block text-white" href="/bookmark/">お気に入り
+      {% if request.session.bookmark and request.session.bookmark.items|length != 0 %}
+      <span class="badge badge-danger">{{request.session.bookmark.items|length}}</span>
       {% endif %}
     </a>
     {% if user.is_authenticated %}
@@ -40,7 +40,7 @@
             <a class="py-2" href="/account/">アカウント</a>
         </li>
         <li>
-            <a class="py-2" href="/cart/">お気に入り</a>
+            <a class="py-2" href="/bookmark/">お気に入り</a>
         </li>
         {% if user.is_authenticated %}
             <li>

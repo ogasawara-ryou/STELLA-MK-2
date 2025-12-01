@@ -34,15 +34,11 @@ urlpatterns = [
     path('orders/<str:pk>/', views.OrderDetailView.as_view()),
     path('orders/', views.OrderIndexView.as_view()),
 
-    # Pay
-    path('pay/checkout/', views.PayWithStripe.as_view()),
-    path('pay/success/', views.PaySuccessView.as_view()),
-    path('pay/cancel/', views.PayCancelView.as_view()),
 
-    # Cart
-    path('cart/add/', views.AddCartView.as_view()),
-    path('cart/remove/<str:pk>/', views.remove_from_cart),
-    path('cart/', views.CartListView.as_view()),
+    # Bookmark
+    path('bookmark/add/', views.BookmarkAddView.as_view(), name='bookmark_add'),
+    path('bookmark/delete/<str:pk>/', views.BookmarkDeleteView.as_view(),name='bookmark_delete'),
+    path('bookmark/', views.BookmarkListView.as_view(), name='bookmark_list'),
 
     # Items
     #path('item/{{item.pk}}/', views.ItemDetailView.as_view()),
@@ -50,10 +46,10 @@ urlpatterns = [
     path('categories/<str:pk>/', views.CategoryListView.as_view()),
     path('tags/<str:pk>/', views.TagListView.as_view()),
     path('new/', views.ItemCreateView.as_view(), name="new"),
-    path('edit/<str:pk>/', views.ItemUpdateView.as_view(), name="edit"), #idが正しく渡っていないテンプレと比べてみて
+    path('edit/<str:pk>/', views.ItemUpdateView.as_view(), name="edit"),
 
     path('', views.IndexListView.as_view(), name="list"),
-    path('bookmark/<str:pk>/', views.BookmarkView.as_view(), name='bookmark'),  
+    path('bookmark/<str:pk>/', views.BookmarkListView.as_view(), name='bookmark'),  
 
 ]
 

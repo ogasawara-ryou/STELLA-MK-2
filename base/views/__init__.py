@@ -1,4 +1,3 @@
-from .pay_views import *
 from .bookmark_views import *
 from .item_views import *
 from .account_views import *
