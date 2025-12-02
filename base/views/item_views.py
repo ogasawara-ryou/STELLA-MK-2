@@ -24,14 +24,6 @@ class IndexListView(LoginRequiredMixin, ListView):
             queryset=queryset.filter(name__icontains=name)
         return queryset
         
-        
-
-    """
-    def item_search(request):
-        query = request.GET.get('q')
-        results = Item.objects.filter(name__icontains=query) if query else Item.objects.all()
-        return render(request, 'search.html', {'items': results})
-    """
 
 class ItemDetailView(DetailView):
     model = Item
@@ -85,29 +77,14 @@ class ItemCreateView(CreateView): #新規作成
     
 class ItemUpdateView(UpdateView):
     model = Item
-    #fields = ("name","description","category","tags","image")
-    #instance=Item  # ← ここで元の内容を初期値としてセット
-    #template_name_suffix = '_update_form'
     template_name = 'pages/update.html'
     form_class = ItemForm
-    #fields ="__all__"
     
     def form_valid(self, form):
         item = form.save(commit=False)  # まずは保存せずに取得
         item.latest_author = self.request.user  # 現在のユーザーを最新の作者として設定
         item.save()  # 保存
         return super().form_valid(form)  # スーパークラスのメソッドを呼び出す
-    
-    '''
-    def get_object(self, queryset=None):
-        obj = super().get_object(queryset)
-        # デバッグ用に取得したアイテム名を出力
-        #print(f"取得したアイテムの名前: {obj.name}")
-        print(f"取得したアイテムのデータ: {obj.__dict__}")
-        return obj
-    '''
-
-#class BookmarkView(request. pk):
 
 
 

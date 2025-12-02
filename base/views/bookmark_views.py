@@ -33,7 +33,13 @@ class BookmarkListView(LoginRequiredMixin,ListView): #
         self.request.session['bookmark'] = bookmark
         return super().get_queryset()
 
-class BookmarkAddView(View): #別にデリートのビューも必要
+class BookmarkAddView(LoginRequiredMixin, View): #別にデリートのビューも必要
+    """
+    def post(self, request, pk):
+    # セッションに商品情報を保存
+    request.session['bookmark_item'] = pk
+    return redirect('login')  # ログインページに遷移
+    """
     def post(self, request, pk):
         print("ブックマーク"+pk)
         item = get_object_or_404(Item, pk=pk)
@@ -59,6 +65,6 @@ class BookmarkDeleteView(View):
     
 """
     
-class BookmarkDeleteView(DeleteView):
+class BookmarkDeleteView(LoginRequiredMixin, DeleteView):
     model = Item
     success_url = reverse_lazy('list')

@@ -38,7 +38,7 @@ urlpatterns = [
     # Bookmark
     path('bookmark/add/', views.BookmarkAddView.as_view(), name='bookmark_add'),
     path('bookmark/delete/<str:pk>/', views.BookmarkDeleteView.as_view(),name='bookmark_delete'),
-    path('bookmark/', views.BookmarkListView.as_view(), name='bookmark_list'),
+    #path('bookmark/', views.BookmarkListView.as_view(), name='bookmark_list'),
 
     # Items
     #path('item/{{item.pk}}/', views.ItemDetailView.as_view()),
