@@ -5,32 +5,31 @@
   <div class="row my-5">
     <div class="col-12 col-lg-6">
       <div class="bg-white border overflow-hidden">
-        <img src="{% if item.image %}{{item.image.url}}{% else %}{% static 'images/noImage.png' %}{% endif %}" width="500px" alt="商品画像" />
+        <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/noImage.png' %}{% endif %}" width="500px" alt="商品画像" />
       </div>
-    </div>
-
-    <div class="item-files">
-    {% for file in item.files.all %}
-        <a href="{{ file.file.url }}">{{ file.file.name }}</a>
-    {% endfor %}
     </div>
 
     <div class="col-12 col-lg-6">
       <div class="border p-3 text-left text-dark overflow-hidden">
-        <h2 class="display-5">{{item.name}}</h2>
+        <h2 class="display-5">{{ item.name }}</h2>
         <p class="lead">
-          <a href="/categories/{{item.category.slug}}/"
-            class="badge badge-pill badge-warning">{{item.category.name}}</a>
+          <a href="/categories/{{ item.category.slug }}/" class="badge badge-pill badge-warning">{{ item.category.name }}</a>
           {% for tag in item.tags.all %}
-          <a href="/tags/{{tag.slug}}/" class="badge badge-pill badge-light">#{{tag}}</a>
+            <a href="/tags/{{ tag.slug }}/" class="badge badge-pill badge-light">#{{ tag }}</a>
           {% endfor %}
+        </p>
 
-        <p class="lead">{{item.description|linebreaks}}</p> <!-- linebreaksフィルターで改行を適用 -->
+        {% if item.files.count > 0 %}
+          <p>ファイル:</p>
+          <div class="item-files">
+            {% for file in item.files.all %}
+              <a href="{{ file.file.url }}">{{ file.file.name }}</a><br>
+            {% endfor %}
+          </div>
+        {% endif %}
 
+        <p class="lead">{{ item.description|linebreaks }}</p> <!-- linebreaksフィルターで改行を適用 -->
         <button class="btn btn-primary" onclick="location.href='{% url 'edit' pk=item.pk %}'">編集</button>
-        
-
-
         
         <form action="{% url 'bookmark' item.pk %}" method="post">
           <button type="submit" name="button">お気に入り追加</button>
@@ -39,15 +38,5 @@
       </div>
     </div>
   </div>
-  <!--
-  <h2>おすすめ</h2>
-  <div class="row mb-5">
-    {% for item in ADDTIONAL_ITEMS %}
-    <div class="col-12 col-lg-3 my-3">
-      {% include 'snippets/item_add_box.html' %}
-    </div>
-    {% endfor %}
-  </div>
-  -->
 </div>
 {% endblock %}
