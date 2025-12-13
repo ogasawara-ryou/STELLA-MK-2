@@ -50,6 +50,7 @@ urlpatterns = [
     path('', views.IndexListView.as_view(), name="list"),
     path('bookmark/<str:pk>/', views.BookmarkListView.as_view(), name='bookmark'),  
 
+
 ]
 
 if settings.DEBUG:
