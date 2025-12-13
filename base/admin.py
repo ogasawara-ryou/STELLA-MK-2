@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
+from .models import Item, Image, File
 
 from base.models import Item, Tag, Category, User, Profile, Order
 from django.contrib.auth.admin import UserAdmin
@@ -13,10 +14,17 @@ class TagInline(admin.TabularInline):
     model = Item.tags.through
 
 
-class ItemAdmin(admin.ModelAdmin):
-    inlines = [TagInline]
-    exclude = ['tags']
+class ImageInline(admin.TabularInline):
+    model = Image
+    extra = 1
 
+class FileInline(admin.TabularInline):
+    model = File
+    extra = 1
+
+class ItemAdmin(admin.ModelAdmin):
+    inlines = [TagInline, ImageInline, FileInline]
+    exclude = ['tags']
 
 class ProfileInline(admin.StackedInline):
     model = Profile

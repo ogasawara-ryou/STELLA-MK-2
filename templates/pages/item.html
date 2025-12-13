@@ -8,6 +8,13 @@
         <img src="{% if item.image %}{{item.image.url}}{% else %}{% static 'images/noImage.png' %}{% endif %}" width="500px" alt="商品画像" />
       </div>
     </div>
+
+    <div class="item-files">
+    {% for file in item.files.all %}
+        <a href="{{ file.file.url }}">{{ file.file.name }}</a>
+    {% endfor %}
+    </div>
+
     <div class="col-12 col-lg-6">
       <div class="border p-3 text-left text-dark overflow-hidden">
         <h2 class="display-5">{{item.name}}</h2>
@@ -17,11 +24,8 @@
           {% for tag in item.tags.all %}
           <a href="/tags/{{tag.slug}}/" class="badge badge-pill badge-light">#{{tag}}</a>
           {% endfor %}
-        <!--</p>
-        <p class="lead">残り{{item.stock}}個
-        </p>
-        <p class="lead">¥{{item.price}}（税別）</p>-->
-        <p class="lead">{{item.description}}</p>
+
+        <p class="lead">{{item.description|linebreaks}}</p> <!-- linebreaksフィルターで改行を適用 -->
 
         <button class="btn btn-primary" onclick="location.href='{% url 'edit' pk=item.pk %}'">編集</button>
         

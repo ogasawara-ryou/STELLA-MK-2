@@ -9,18 +9,15 @@
       <form action="{% url 'list' %}" method="GET" class="form-inline my-2 my-lg-0">
     <input type="text" name="name" value="{{ request.GET.name }}" placeholder="検索したい投稿の題名" aria-label="Search" class="form-control mr-sm-2">
     <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
-</form>
-      {% if item_list|length != 0 %}
+      </form>
+
+      {% if object_list|length != 0 %}
       <table class="table mb-5 text-right">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">登録順</th>
             <th scope="col">題名</th>
             <th scope="col">最終更新者</th>
-            <!--
-            <th scope="col">個数</th>
-            <th scope="col">計</th>
-            -->
             <th scope="col"></th>
           </tr>
         </thead>
@@ -42,14 +39,22 @@
               >
             </td>
           </tr>
+          {% else %}
+          <tr>
+            <td colspan="4">ブックマークはありません。</td>
+          </tr>
           {% endfor %}
         </tbody>
       </table>
 
+      {% else %}
+  <p>ブックマークはありません。</p>
+      {% endif %}
+
       <!--<p class="lead text-right">小計 - ¥{{total}}</p>
       <p class="lead text-right">税込計 - ¥{{tax_included_total}}</p>-->
 
-      <!-- Checkoutボタン -->
+      <!-- Checkoutボタン 
       <form action="/pay/checkout/" method="POST" class="text-right">
         {% csrf_token %}
         <button type="submit" class="btn btn-info">Checkout</button>
@@ -70,7 +75,7 @@
   </div>-->
 </div>
 
-<!-- ブラウザバックへの対応 -->
+<!-- ブラウザバックへの対応 
 <script>
   document.addEventListener(
     "visibilitychange",
@@ -81,5 +86,5 @@
     },
     false
   );
-</script>
+</script>-->
 {% endblock %}

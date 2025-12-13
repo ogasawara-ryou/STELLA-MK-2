@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Item
+from .models import Item, Image, File
 
 
 class UserCreationForm(forms.ModelForm):
@@ -25,3 +25,16 @@ class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['name', 'description', 'category', 'tags', 'image']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 4, 'cols': 40}),  # 説明用のテキストエリア
+        }
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ['image']
+
+class FileForm(forms.ModelForm):
+    class Meta:
+        model = File
+        fields = ['file']

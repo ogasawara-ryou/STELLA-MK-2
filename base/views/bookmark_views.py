@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.conf import settings
 from django.views.generic import View, ListView
-from base.models import Item
+from base.models import Item, Bookmark
 from collections import OrderedDict
 from django.shortcuts import get_object_or_404, redirect
 
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-
+"""
 class BookmarkListView(LoginRequiredMixin,ListView): #
     model = Item
     template_name = 'pages/bookmark.html'
@@ -32,6 +32,37 @@ class BookmarkListView(LoginRequiredMixin,ListView): #
         bookmark['tax_included_total'] = self.tax_included_total
         self.request.session['bookmark'] = bookmark
         return super().get_queryset()
+"""
+
+class BookmarkListView(LoginRequiredMixin, ListView):
+    model = Item
+    template_name = 'pages/bookmark.html'
+
+    def get_queryset(self):
+        bookmark = self.request.session.get('bookmark', None)
+        
+        if bookmark is None or not bookmark.get('items'):
+            return []  # 空のリストを返す
+
+        self.queryset = []
+        self.total = 0
+
+        for item_pk, quantity in bookmark['items'].items():
+            try:
+                obj = Item.objects.get(pk=item_pk)
+                obj.quantity = quantity
+                obj.subtotal = int(obj.price * quantity)
+                self.queryset.append(obj)
+                self.total += obj.subtotal
+            except Item.DoesNotExist:
+                continue  # アイテムが見つからない場合はスキップ
+
+        self.tax_included_total = int(self.total * (settings.TAX_RATE + 1))
+        bookmark['total'] = self.total
+        bookmark['tax_included_total'] = self.tax_included_total
+        self.request.session['bookmark'] = bookmark
+
+        return self.queryset  # フィルタリングされたアイテムのリストを返す
 
 class BookmarkAddView(LoginRequiredMixin, View): #別にデリートのビューも必要
     """
@@ -67,4 +98,4 @@ class BookmarkDeleteView(View):
     
 class BookmarkDeleteView(LoginRequiredMixin, DeleteView):
     model = Item
-    success_url = reverse_lazy('list')
+    success_url = reverse_lazy('bookmark')

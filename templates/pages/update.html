@@ -10,6 +10,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     {{ form.errors }}
+    {{ file_form.as_p }}
     <br>
     <a href="{% url 'list' %}">戻る</a>
 

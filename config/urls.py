@@ -36,12 +36,11 @@ urlpatterns = [
 
 
     # Bookmark
-    path('bookmark/add/', views.BookmarkAddView.as_view(), name='bookmark_add'),
+    path('bookmark/add/<str:pk>/', views.BookmarkAddView.as_view(), name='bookmark_add'),
     path('bookmark/delete/<str:pk>/', views.BookmarkDeleteView.as_view(),name='bookmark_delete'),
     #path('bookmark/', views.BookmarkListView.as_view(), name='bookmark_list'),
 
     # Items
-    #path('item/{{item.pk}}/', views.ItemDetailView.as_view()),
     path('items/<str:pk>', views.ItemDetailView.as_view(), name="item_detail"),
     path('categories/<str:pk>/', views.CategoryListView.as_view()),
     path('tags/<str:pk>/', views.TagListView.as_view()),

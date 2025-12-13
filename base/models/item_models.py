@@ -47,6 +47,14 @@ class Item(models.Model):
     def get_absolute_url(self):
         return reverse('list')
     
+class Image(models.Model):
+    item = models.ForeignKey(Item, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='item_images/')
+
+class File(models.Model):
+    item = models.ForeignKey(Item, related_name='files', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='item_files/')
+    
 class Bookmark(models.Model):
     user=models.ForeignKey(User,on_delete=models.SET_NULL, related_name='bookmarked_users', null=True, blank=True)
     item=models.ForeignKey(Item,on_delete=models.SET_NULL, null=True, blank=True)
