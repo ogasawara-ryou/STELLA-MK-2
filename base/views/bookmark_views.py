@@ -38,9 +38,15 @@ class BookmarkListView(LoginRequiredMixin, ListView):
     model = Item
     template_name = 'pages/bookmark.html'
 
+
     def get_queryset(self):
-        bookmark = self.request.session.get('bookmark', None)
+        query_set = Bookmark.objects.filter(user=self.request.user).all()
         
+        return query_set
+        
+        """
+        bookmark = self.request.session.get('bookmark', None)
+
         if bookmark is None or not bookmark.get('items'):
             return []  # 空のリストを返す
 
@@ -63,6 +69,7 @@ class BookmarkListView(LoginRequiredMixin, ListView):
         self.request.session['bookmark'] = bookmark
 
         return self.queryset  # フィルタリングされたアイテムのリストを返す
+"""
 
 class BookmarkAddView(LoginRequiredMixin, View): #別にデリートのビューも必要
     """

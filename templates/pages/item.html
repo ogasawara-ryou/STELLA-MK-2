@@ -31,7 +31,7 @@
         <p class="lead">{{ item.description|linebreaks }}</p> <!-- linebreaksフィルターで改行を適用 -->
         <button class="btn btn-primary" onclick="location.href='{% url 'edit' pk=item.pk %}'">編集</button>
         
-        <form action="{% url 'bookmark' item.pk %}" method="post">
+        <form action="{% url 'bookmark_add' item.pk %}" method="post">
           <button type="submit" name="button">お気に入り追加</button>
           {% csrf_token %}
         </form>

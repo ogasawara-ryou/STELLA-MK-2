@@ -22,27 +22,24 @@
           </tr>
         </thead>
         <tbody>
-          {% for item in object_list %}
+          {% for bookmark in object_list %}
           <tr>
             <td>No.{{forloop.counter}}</td>
-            <td>{{item.name}}</td>
-            <td>{{item.latest_author.username|default:"不明"}}</td>
+            <td>{{bookmark.item.name}}</td>
+            <td>{{bookmark.item.latest_author.username|default:"不明"}}</td>
             <!--
             <td>{{item.quantity}}</td>
             <td>{{item.subtotal}}</td>
             -->
             <td>
               <a
-                href="/bookmark/remove/{{item.pk}}/"
+                href="/bookmark/remove/{{bookmark.item.pk}}/"
                 class="my-auto btn btn-danger btn-sm"
                 >削除</a
               >
             </td>
           </tr>
-          {% else %}
-          <tr>
-            <td colspan="4">ブックマークはありません。</td>
-          </tr>
+
           {% endfor %}
         </tbody>
       </table>
@@ -51,40 +48,5 @@
   <p>ブックマークはありません。</p>
       {% endif %}
 
-      <!--<p class="lead text-right">小計 - ¥{{total}}</p>
-      <p class="lead text-right">税込計 - ¥{{tax_included_total}}</p>-->
 
-      <!-- Checkoutボタン 
-      <form action="/pay/checkout/" method="POST" class="text-right">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-info">Checkout</button>
-      </form>
-
-      {% else %}
-      <p class="">お気に入り登録がありません。</p>
-      {% endif %}
-    </div>
-  </div>
-  <!--<h2>おすすめ</h2>
-  <div class="row mb-5">
-    {% for object in ADDTIONAL_ITEMS %}
-    <div class="col-12 col-lg-3 my-3">
-      {% include 'snippets/item_add_box.html' %}
-    </div>
-    {% endfor %}
-  </div>-->
-</div>
-
-<!-- ブラウザバックへの対応 
-<script>
-  document.addEventListener(
-    "visibilitychange",
-    () => {
-      if (document.visibilityState === "visible") {
-        window.location = "/pay/cancel/";
-      }
-    },
-    false
-  );
-</script>-->
 {% endblock %}
