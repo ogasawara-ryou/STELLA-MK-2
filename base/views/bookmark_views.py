@@ -105,4 +105,7 @@ class BookmarkDeleteView(View):
     
 class BookmarkDeleteView(LoginRequiredMixin, DeleteView):
     model = Item
+    #モデルがアイテムだとお気に入り削除時、一覧からも削除
+    template_name = 'pages/item_confirm_delete.html'
     success_url = reverse_lazy('bookmark')
+    

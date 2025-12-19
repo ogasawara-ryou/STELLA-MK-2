@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="container">
+  <div class="row my-5">
+    <div class="col-12">
+<h1>削除</h1>
+
+<p>{{ object }} をお気に入りから削除しますか？</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">はい</button>
+    <a href="{% url 'bookmark' %}">キャンセル</a>
+</form>
+
+<!--<form method="post">
+   {% csrf_token %}
+   以下のお気に入りを削除してもよろしいですか？<br>
+   {{ object }}<br>
+   <a href="{% url 'bookmark' %}">戻る</a>
+   <input type="submit" class="btn btn-danger" value="削除">
+</form>-->
+
+
+{% endblock %}
